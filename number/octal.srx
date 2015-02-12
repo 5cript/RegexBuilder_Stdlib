@@ -1,0 +1,8 @@
+#ifndef STD_NUMBER_OCT_SRX
+#define STD_NUMBER_OCT_SRX
+
+set octal {
+	contains: 0-8;
+}
+
+#endif

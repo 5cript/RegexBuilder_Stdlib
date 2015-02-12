@@ -1,0 +1,23 @@
+#ifndef STD_FUNDAMENTAL_RANGE_SRX
+#define STD_FUNDAMENTAL_RANGE_SRX
+
+#include <boost/preprocessor/facilities/overload.hpp>
+
+#define __range_1(exact) {exact}
+#define __range_2(from, to) {from, to}
+
+// getting a warning on one of those? you used range with too many arguments. (confused with repeat?)
+#define __range_3()
+#define __range_4()
+#define __range_5()
+#define __range_6()
+#define __range_7()
+#define __range_8()
+#define __range_9()
+#define __range_10()
+#define __range_11()
+#define __range_12()
+
+#define range(...) BOOST_PP_OVERLOAD(__range_, __VA_ARGS__)(__VA_ARGS__)
+
+#endif

@@ -1,0 +1,20 @@
+#ifndef STD_FUNDAMENTAL_GROUP_SRX
+#define STD_FUNDAMENTAL_GROUP_SRX
+
+#define group(REGEX) \
+__INLINE__(group)__START__ \
+contains: REGEX; \
+__END__
+
+#define group_c(REGEX) \
+__INLINE__(group:capture)__START__ \
+contains: REGEX; \
+__END__
+
+/*
+regex __Test {
+	contains: group(A);
+}
+*/
+
+#endif

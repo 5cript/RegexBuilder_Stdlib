@@ -1,0 +1,64 @@
+#ifndef STD_FUNDAMENTAL_ALTERNATIVE_SRX
+#define STD_FUNDAMENTAL_ALTERNATIVE_SRX
+
+/** 
+ *	This file defines the any_of macro that generates (?:a|b|c) structures and
+ *	the any_of_c macro that generates (a|b|c) structures.
+ *
+ *	any_of(A, B) // -> (?:~A|~B)  (where A and B are classes, which get expanded)
+ */
+
+#include <fundamental/inline/group.srx>
+
+#include <boost/preprocessor/variadic/to_seq.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/seq/pop_front.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS __Test
+
+#define __or_expand(r, DATA, ELEM) \
+	| ELEM
+
+#define any_of_g(...) \
+group( \
+BOOST_PP_VARIADIC_ELEM(0, __VA_ARGS__) \
+BOOST_PP_SEQ_FOR_EACH( \
+	__or_expand, \
+	, \
+	BOOST_PP_SEQ_POP_FRONT(BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__)) \
+))
+
+#define any_of_gc(...) \
+group_c( \
+BOOST_PP_VARIADIC_ELEM(0, __VA_ARGS__) \
+BOOST_PP_SEQ_FOR_EACH( \
+	__or_expand, \
+	, \
+	BOOST_PP_SEQ_POP_FRONT(BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__)) \
+))
+
+#define any_of(...) \
+BOOST_PP_VARIADIC_ELEM(0, __VA_ARGS__) \
+BOOST_PP_SEQ_FOR_EACH( \
+	__or_expand, \
+	, \
+	BOOST_PP_SEQ_POP_FRONT(BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__)) \
+)
+
+/*
+regex A {
+	contains: \d;
+}
+
+regex B {
+	contains: \w;
+}
+
+regex __Test {
+	contains: any_of(A, B);
+}
+*/
+
+#endif

@@ -1,0 +1,63 @@
+#ifndef STD_FUNDAMENTAL_SET_SRX
+#define STD_FUNDAMENTAL_SET_SRX
+
+#define set(REGEX) \
+ __INLINE__(set)__START__ \
+	contains: REGEX;  \
+__END__ 
+
+
+#define set_n(REGEX) \
+__INLINE__(set:negate)__START__ \
+	contains: REGEX; \
+__END__ 
+
+set alnum {
+	contains: :alnum:;
+}
+
+set alpha {
+	contains: :alpha:;
+}
+
+set blank {
+	contains :blank:;
+}
+
+set cntrl {
+	contains: :cntrl:;
+}
+
+set digit {
+	contains: :digit:;
+}
+
+set graph {
+	contains: :graph:;
+}
+
+set lower {
+	contains :lower:;
+}
+
+set print {
+	contains: :print:;
+}
+
+set punct {
+	contains: :punct:;
+}
+
+set space {
+	contains: :space:;
+}
+
+set upper {
+	contains: :upper:;
+}
+
+set xdigit {
+	contains: :xdigit:;
+}
+
+#endif

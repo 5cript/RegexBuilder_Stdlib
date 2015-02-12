@@ -1,0 +1,17 @@
+#ifndef STD_CPP_HEXADECIMAL_SRX
+#define STD_CPP_HEXADECIMAL_SRX
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS cpp_hex
+
+#include <number/hexadecimal.srx>
+#include <fundamental/repeat.srx>
+
+hex_set(1)
+
+group cpp_hex {
+	contains: 0x;
+	contains: repeat(hexadecimal);
+}
+
+#endif

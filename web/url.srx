@@ -1,0 +1,69 @@
+#ifndef STD_WEB_URL_SRX
+#define STD_WEB_URL_SRX
+
+#include "uri_common.srx"
+#include "ipv4.srx"
+#include "ipv6.srx"
+#include "domain_name.srx"
+
+#include <fundamental/alternative.srx>
+#include <fundamental/repeat.srx>
+#include <fundamental/inline/group.srx>
+#include <string/list.srx>
+#include <number/unsigned_short.srx>
+
+#undef MAIN_REGEX_CLASS
+
+group __domain : capture {
+	contains: any_of(~ipv4, \[~ipv6\], ~domain_name);
+}
+
+regex __port {
+	contains: :;
+	contains: group_c(~unsigned_short);
+}
+
+group __path_char {
+	contains: set(a-zA-Z0-9);
+	contains: |;
+	contains: set(-_~!$&');
+	contains: |;
+	contains: [()];
+	contains: |;
+	contains: [*+,;=:@];
+}
+
+regex __path_part {
+	contains: ~__path_char;
+}
+
+narrow_delim_list(__path, ~__path_part+, \/)
+
+/*
+	capture group 1: whole url
+	capture group 2: scheme
+	capture group 3: domain
+	capture group 4: port
+	capture group 5: path
+	capture group 6: query
+	capture group 7: fragment
+*/
+
+regex __opt_path {
+	contains: regex(group_c(\/~__path));
+	contains: |;
+	contains: \/;
+}
+
+group url : capture {
+	contains: ~__scheme;
+	contains: :;
+	contains: \/\/;
+	contains: ~__domain;	
+	contains: optional(~__port);
+	contains: optional(~__opt_path);
+	contains: optional(~__query);
+	contains: optional(~__fragment_id);
+}
+
+#endif

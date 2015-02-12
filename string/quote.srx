@@ -1,0 +1,29 @@
+#ifndef STD_STRING_QUOTE_SRX
+#define STD_STRING_QUOTE_SRX
+
+#include <fundamental/repeat.srx>
+#include <fundamental/any.srx>
+#include <fundamental/alternative.srx>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS quoted_string
+
+set __quot_except : negate {
+	raw: "\\;
+}
+
+regex __escape {
+	raw: \\;
+	contains: ~any;
+}
+
+regex __inside_quotes {
+	contains: any_of_g(~__quot_except, ~__escape);
+	raw: *;
+}
+
+regex quoted_string {
+	contains: "~__inside_quotes";
+}
+
+#endif

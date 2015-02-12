@@ -1,0 +1,22 @@
+#ifndef STD_WEB_HEXADECIMAL_SRX
+#define STD_WEB_HEXADECIMAL_SRX
+
+#include <number/hexadecimal.srx>
+
+hex_set(1)
+
+group css_hex {
+	contains: #;
+	contains: ~hexadecimal;
+	contains: range(6);
+	contains: |;
+	contains: ~hexadecimal;
+	contains: range(3);
+}
+
+// some 
+regex html_hex {
+	contains: ~css_hex;
+}
+
+#endif

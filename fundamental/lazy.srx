@@ -1,0 +1,7 @@
+#ifndef STD_FUNDAMENTAL_LAZY_SRX
+#define STD_FUNDAMENTAL_LAZY_SRX
+
+#define lazy(REGEX) \
+REGEX?
+
+#endif

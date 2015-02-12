@@ -1,0 +1,11 @@
+#ifndef STD_FUNDAMENTAL_WHITESPACE_SRX
+#define STD_FUNDAMENTAL_WHITESPACE_SRX
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS whitespace
+
+regex whitespace {
+	raw: \s;
+}
+
+#endif

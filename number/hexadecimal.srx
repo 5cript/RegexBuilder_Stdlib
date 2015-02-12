@@ -1,0 +1,19 @@
+#ifndef STD_NUMBER_HEX_SRX
+#define STD_NUMBER_HEX_SRX
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS web_hex
+
+#include <fundamental/range.srx>
+#include <boost/preprocessor/control/if.hpp>
+
+#define hex_set(ALLOW_UPPER_CASE) BOOST_PP_IF(ALLOW_UPPER_CASE, \
+set hexadecimal { __INSERT_CR__ \
+	raw: a-fA-F0-9; __INSERT_CR__ \
+ }, \
+set hexadecimal { __INSERT_CR__ \
+	raw: a-f0-9; __INSERT_CR__ \
+})
+
+#endif
+

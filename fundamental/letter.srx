@@ -1,0 +1,11 @@
+#ifndef STD_FUNDAMENTAL_LETTER_SRX
+#define STD_FUNDAMENTAL_LETTER_SRX
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS letter
+
+regex letter {
+	raw: \w;
+}
+
+#endif

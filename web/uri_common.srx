@@ -1,0 +1,58 @@
+#ifndef STD_WEB_URI_COMMON_SRX
+#define STD_WEB_URI_COMMON_SRX
+
+#include <fundamental/repeat.srx>
+#include <fundamental/inline.srx>
+#include <fundamental/letter.srx>
+#include <fundamental/number.srx>
+#include <fundamental/alternative.srx>
+#include <string/list.srx>
+
+#undef MAIN_REGEX_CLASS
+
+set __scheme_set {
+	contains: a-zA-Z0-9+\.-;
+}
+
+group __scheme : capture {
+	contains: [a-zA-Z];
+	contains: ~__scheme_set*;
+}
+
+group __query_pair {
+	contains: ~letter+;
+	contains: =;
+	contains: repeat(set(~letter-));
+}
+
+narrow_delim_list(__query_content, ~__query_pair, &)
+
+regex __query {
+	contains: \?;
+	contains: group_c(~__query_content);
+}
+
+regex __fragment_character {
+	contains: any_of(~letter, ~number, =);
+	contains: |;
+	contains: \(;
+	contains: |;	
+	contains: \);
+	contains: |;
+	contains: \\;
+	contains: |;
+	contains: \/;
+	contains: |;
+	contains: :;
+	contains: |;
+	contains: ,;
+	contains: |;
+	contains: &;
+}
+
+regex __fragment_id {
+	contains: #;
+	contains: group_c(repeat(~__fragment_character));
+}
+
+#endif

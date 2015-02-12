@@ -1,0 +1,25 @@
+#ifndef STD_NUMBER_UNSIGNED_CHAR_SRX
+#define STD_NUMBER_UNSIGNED_CHAR_SRX
+
+group __unsigned_char_A {
+	raw: 25;
+	contains: ~__set_0_5;
+}
+
+group __unsigned_char_B {
+	raw: 2;
+	contains: ~__set_0_4;
+	contains: ~__set_0_9;
+}
+
+group __unsigned_char_C {
+	contains: optional(~__set_0_1);
+	contains: ~__set_0_9;
+	contains: optional(~__set_0_9);
+}
+
+group unsigned_char {
+	contains: any_of(~__unsigned_char_A, ~__unsigned_char_B, ~__unsigned_char_C);
+}
+
+#endif // STD_NUMBER_UNSIGNED_CHAR_SRX

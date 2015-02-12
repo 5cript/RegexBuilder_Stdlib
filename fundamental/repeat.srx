@@ -1,0 +1,55 @@
+#ifndef STD_FUNDAMENTAL_REPEAT_SRX
+#define STD_FUNDAMENTAL_REPEAT_SRX
+
+/**
+ *	This file defines the following functions:
+ *
+ *	repeat (REGEX_CLASS)    // -> REGEX_CLASS+
+ *	repeat(REGEX_CLASS, 0) // -> REGEX_CLASS*
+ *	repeat(REGEX_CLASS, EXACT) // -> REGEX_CASS{EXACT}
+ *	repeat(REGEX_CLASS, FROM, TO) // -> REGEX_CLASS{FROM, TO}
+ *
+ *	lazy_repeat // a lazy variant of repeat
+ */
+
+#include <boost/preprocessor/control/if.hpp>
+#include <boost/preprocessor/facilities/overload.hpp>
+
+#include <fundamental/range.srx>
+#include <fundamental/lazy.srx>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS __Test
+
+#define KLEENE 0
+
+#define __repeat_1(REGEX) \
+	(?:REGEX)+
+
+#define __repeat_2(REGEX, EXACT_OR_OPTIONAL) \
+	(?:REGEX) BOOST_PP_IF(EXACT_OR_OPTIONAL, \
+		range(EXACT_OR_OPTIONAL), *)
+
+#define __repeat_3(REGEX, FROM, TO) \
+	(?:REGEX)range(FROM, TO) \
+
+#define repeat(...) BOOST_PP_OVERLOAD(__repeat_, __VA_ARGS__)(__VA_ARGS__)
+#define lazy_repeat(...) lazy(repeat(__VA_ARGS__))
+
+#define optional(REGEX) \
+	(?:REGEX)? \
+
+/*
+regex S {
+	contains: \d;
+}
+
+regex __Test {
+	contains: lazy_repeat(S, 1, 4);
+	contains: lazy_repeat(S, 1);
+	contains: lazy_repeat(S);
+	contains: lazy_repeat(S, KLEENE);
+}
+*/
+
+#endif

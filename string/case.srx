@@ -1,0 +1,8 @@
+#ifndef STD_STRING_CASE_SRX
+#define STD_STRING_CASE_SRX
+
+/**
+ *	This header was removed, because of native case insensitivity support
+ */
+
+#endif

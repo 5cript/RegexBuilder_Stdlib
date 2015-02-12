@@ -1,0 +1,16 @@
+#ifndef STD_NUMBER_INTEGER_SRX
+#define STD_NUMBER_INTEGER_SRX
+
+regex positive_integer {
+	contains: \d+;
+}
+
+regex negative_integer {
+	contains: -\d+;
+}
+
+regex integer {
+	contains: -?\d+;
+}
+
+#endif

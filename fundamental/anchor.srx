@@ -1,0 +1,10 @@
+#ifndef STD_FUNDAMENTAL_ANCHOR_SRX
+#define STD_FUNDAMENTAL_ANCHOR_SRX
+
+#define fullmatch(rgx) ^rgx$
+#define end $
+#define start ^
+#define word(rgx) \brgx\b
+#define boundary \b
+
+#endif

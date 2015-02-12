@@ -1,0 +1,15 @@
+#ifndef STD_CPP_OCTAL_SRX
+#define STD_CPP_OCTAL_SRX
+
+#include <number/octal.srx>
+#include <fundamental/repeat.srx>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS cpp_octal
+
+group cpp_octal {
+	contains: 0;
+	contains: repeat(octal, KLEENE);
+}
+
+#endif

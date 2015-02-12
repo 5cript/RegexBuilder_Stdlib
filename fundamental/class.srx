@@ -1,0 +1,6 @@
+#ifndef STD_FUNDAMENTAL_CLASS_SRX
+#define STD_FUNDAMENTAL_CLASS_SRX
+
+#define deref(NAME) ~ ## NAME
+
+#endif

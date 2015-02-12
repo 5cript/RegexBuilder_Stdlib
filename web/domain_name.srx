@@ -1,0 +1,44 @@
+#ifndef STD_WEB_DOMAIN_NAME_SRX
+#define STD_WEB_DOMAIN_NAME_SRX
+
+#include <fundamental/repeat.srx>
+#include <fundamental/inline/set.srx>
+
+#undef MAIN_REGEX_CLASS
+
+group __domain_name_front {
+	contains: repeat(set(a-zA-Z), 1);
+	contains: |;
+	contains: repeat(set(a-zA-Z), 1);
+	contains: repeat(set(a-zA-Z), 1);
+	contains: |;
+	contains: repeat(set(a-zA-Z), 1);
+	contains: repeat(set(0-9), 1);
+	contains: |;
+	contains: repeat(set(0-9), 1);
+	contains: repeat(set(a-zA-Z), 1);
+	contains: |;
+	contains: set(a-zA-Z0-9);
+	contains: repeat(set(a-zA-Z0-9_-), 1, 61);
+	contains: set(a-zA-Z0-9);
+}
+
+group __dnb_1 {
+	contains: repeat(set(a-zA-Z0-9-), 2, 30);
+	contains: \.;
+	contains: repeat(set(a-zA-Z), 2, 3);
+}
+
+group __domain_name_back {
+	contains: repeat(set(a-zA-Z), 2, 6);
+	contains: |;
+	contains: ~__dnb_1;
+}
+
+group domain_name {
+	contains: ~__domain_name_front;
+	contains: \.;
+	contains: ~__domain_name_back;
+}
+
+#endif

@@ -1,0 +1,9 @@
+#ifndef STD_FUNDAMENTAL_REGEX_SRX
+#define STD_FUNDAMENTAL_REGEX_SRX
+
+#define regex(REGEX) \
+__INLINE__(regex)__START__ \
+	contains: REGEX; \
+__END__
+
+#endif

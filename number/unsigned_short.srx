@@ -1,0 +1,56 @@
+#ifndef STD_NUMBER_UNSIGNED_SHORT_SRX
+#define STD_NUMBER_UNSIGNED_SHORT_SRX
+
+#include <fundamental/alternative.srx>
+#include <fundamental/repeat.srx>
+#include <fundamental/inline/set.srx>
+
+#undef MAIN_REGEX_CLASS
+
+regex __unsigned_short_A {
+	contains: repeat(set(0-9),1);
+}
+
+regex __unsigned_short_B {
+	contains: repeat(set(0-9),2);
+}
+
+regex __unsigned_short_C {
+	contains: repeat(set(0-9),3);
+}
+
+regex __unsigned_short_D {
+	contains: repeat(set(0-9),4);
+}
+
+regex __unsigned_short_E {
+	contains: set(1-5);
+	contains: repeat(set(0-9),4);
+}
+
+regex __unsigned_short_F {
+	contains: 6 set(0-4);
+	contains: repeat([0-9], 3);
+}
+
+regex __unsigned_short_G {
+	contains: 65 set(0-4);
+	contains: repeat([0-9], 2);
+}
+
+regex __unsigned_short_H {
+	contains: 655 set(0-2);
+	contains: repeat([0-9], 1);
+}
+
+regex __unsigned_short_I {
+	contains: 6553 set(0-5);
+}
+
+group unsigned_short {
+	contains: \b;
+	contains: any_of(~__unsigned_short_I, ~__unsigned_short_H, ~__unsigned_short_G, ~__unsigned_short_F, ~__unsigned_short_E, ~__unsigned_short_D, ~__unsigned_short_C, ~__unsigned_short_B, ~__unsigned_short_A);
+	contains: \b;
+}
+
+#endif // STD_NUMBER_UNSIGNED_SHORT_SRX

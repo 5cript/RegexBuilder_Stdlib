@@ -1,0 +1,62 @@
+#ifndef STD_WEB_IP4_SRX
+#define STD_WEB_IP4_SRX
+
+#include <fundamental/alternative.srx>
+#include <fundamental/repeat.srx>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS ipv4
+
+#define DIGIT_SET(FROM, TO) \
+set __set_ ## FROM ## _ ## TO { __INSERT_CR__ \
+	raw: FROM - TO; __INSERT_CR__\
+}
+
+DIGIT_SET(0, 1)
+DIGIT_SET(0, 4)
+DIGIT_SET(0, 5)
+DIGIT_SET(0, 9)
+
+group __tiny_number_A {
+	raw: 25;
+	contains: ~__set_0_5;
+}
+
+group __tiny_number_B {
+	raw: 2;
+	contains: ~__set_0_4;
+	contains: ~__set_0_9;
+}
+
+group __tiny_number_C {
+	contains: optional(~__set_0_1);
+	contains: ~__set_0_9;
+	contains: optional(~__set_0_9);
+}
+
+group __tiny_number {
+	contains: any_of(~__tiny_number_A, ~__tiny_number_B, ~__tiny_number_C);
+}
+
+group __tiny_number_c : capture {
+	contains: any_of(~__tiny_number_A, ~__tiny_number_B, ~__tiny_number_C);
+}
+
+regex ipv4 {
+	contains: repeat(group(~__tiny_number\.), 3);
+	contains: ~__tiny_number;
+}
+
+regex ipv4_capture {
+	contains: ~__tiny_number_c;
+	contains: \.;
+	contains: ~__tiny_number_c;
+	contains: \.;
+	contains: ~__tiny_number_c;
+	contains: \.;
+	contains: ~__tiny_number_c;
+}
+
+#undef DIGIT_SET
+
+#endif

@@ -1,0 +1,26 @@
+#ifndef STD_STRING_LIST_SRX
+#define STD_STRING_LIST_SRX
+
+#include <boost/preprocessor/control/if.hpp>
+#include <boost/preprocessor/facilities/overload.hpp>
+
+#include <fundamental/inline/group.srx>
+
+#undef MAIN_REGEX_CLASS
+#define MAIN_REGEX_CLASS __Test
+
+#define comma_list(NAME, LIST_ELEMENT) \
+regex NAME { __INSERT_CR__ \
+	contains: group_c(LIST_ELEMENT)(,\s* group_c(LIST_ELEMENT))*; __INSERT_CR__ \
+}
+
+#define narrow_delim_list(NAME, LIST_ELEMENT, DELIMITER) \
+regex NAME { __INSERT_CR__ \
+	contains: LIST_ELEMENT group(DELIMITER LIST_ELEMENT)*; __INSERT_CR__ \
+}
+
+/*
+comma_list(__Test, \d+)
+*/
+
+#endif
