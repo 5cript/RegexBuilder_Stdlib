@@ -8,8 +8,6 @@
 #include <fundamental/alternative.srx>
 #include <string/list.srx>
 
-#undef MAIN_REGEX_CLASS
-
 set __scheme_set {
 	contains: a-zA-Z0-9+\.-;
 }

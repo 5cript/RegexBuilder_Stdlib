@@ -12,8 +12,6 @@
 #include <string/list.srx>
 #include <number/unsigned_short.srx>
 
-#undef MAIN_REGEX_CLASS
-
 group __domain : capture {
 	contains: any_of(~ipv4, \[~ipv6\], ~domain_name);
 }

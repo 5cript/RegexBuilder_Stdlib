@@ -17,6 +17,14 @@
 #define __range_10()
 #define __range_11()
 #define __range_12()
+#define __range_13()
+#define __range_14()
+#define __range_15()
+#define __range_16()
+#define __range_17()
+#define __range_18()
+#define __range_19()
+#define __range_20()
 
 #define range(...) BOOST_PP_OVERLOAD(__range_, __VA_ARGS__)(__VA_ARGS__)
 

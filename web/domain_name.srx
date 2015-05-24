@@ -4,8 +4,6 @@
 #include <fundamental/repeat.srx>
 #include <fundamental/inline/set.srx>
 
-#undef MAIN_REGEX_CLASS
-
 group __domain_name_front {
 	contains: repeat(set(a-zA-Z), 1);
 	contains: |;

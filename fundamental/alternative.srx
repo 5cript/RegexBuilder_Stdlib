@@ -15,9 +15,6 @@
 #include <boost/preprocessor/seq/pop_front.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS __Test
-
 #define __or_expand(r, DATA, ELEM) \
 	| ELEM
 

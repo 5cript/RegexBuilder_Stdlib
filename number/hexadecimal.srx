@@ -1,9 +1,6 @@
 #ifndef STD_NUMBER_HEX_SRX
 #define STD_NUMBER_HEX_SRX
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS web_hex
-
 #include <fundamental/range.srx>
 #include <boost/preprocessor/control/if.hpp>
 

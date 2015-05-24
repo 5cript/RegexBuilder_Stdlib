@@ -5,9 +5,6 @@
 #include <fundamental/any.srx>
 #include <fundamental/alternative.srx>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS quoted_string
-
 set __quot_except : negate {
 	raw: "\\;
 }
@@ -24,6 +21,10 @@ regex __inside_quotes {
 
 regex quoted_string {
 	contains: "~__inside_quotes";
+}
+
+regex quoted_no_quot {
+	contains: ~__inside_quotes;
 }
 
 #endif

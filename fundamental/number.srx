@@ -1,9 +1,6 @@
 #ifndef STD_FUNDAMENTAL_NUMBER_SRX
 #define STD_FUNDAMENTAL_NUMBER_SRX
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS number
-
 regex number {
 	raw: \d;
 }

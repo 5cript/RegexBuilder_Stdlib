@@ -6,9 +6,6 @@
 
 #include <fundamental/inline/group.srx>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS __Test
-
 #define comma_list(NAME, LIST_ELEMENT) \
 regex NAME { __INSERT_CR__ \
 	contains: group_c(LIST_ELEMENT)(,\s* group_c(LIST_ELEMENT))*; __INSERT_CR__ \

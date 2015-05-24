@@ -1,9 +1,6 @@
 #ifndef STD_WEB_EMAIL_SRX
 #define STD_WEB_EMAIL_SRX
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS email
-
 // conforms to RFC 5322, BUT NOT MORE!
 // this only checks syntax validity.
 // I was too lazy to rewrite this one properly :P

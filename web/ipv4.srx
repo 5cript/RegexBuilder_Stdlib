@@ -4,9 +4,6 @@
 #include <fundamental/alternative.srx>
 #include <fundamental/repeat.srx>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS ipv4
-
 #define DIGIT_SET(FROM, TO) \
 set __set_ ## FROM ## _ ## TO { __INSERT_CR__ \
 	raw: FROM - TO; __INSERT_CR__\

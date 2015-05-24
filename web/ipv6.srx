@@ -12,8 +12,6 @@
 #include <web/ipv4.srx>
 #include <number/hexadecimal.srx>
 
-#undef MAIN_REGEX_CLASS
-
 /*
 matches all of those:
 

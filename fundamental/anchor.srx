@@ -5,6 +5,9 @@
 #define end $
 #define start ^
 #define word(rgx) \brgx\b
-#define boundary \b
+
+regex boundary {
+	contains: \b
+}
 
 #endif

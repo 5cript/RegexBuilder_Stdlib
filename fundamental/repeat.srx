@@ -18,9 +18,6 @@
 #include <fundamental/range.srx>
 #include <fundamental/lazy.srx>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS __Test
-
 #define KLEENE 0
 
 #define __repeat_1(REGEX) \

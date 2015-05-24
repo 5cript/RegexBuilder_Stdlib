@@ -2,9 +2,6 @@
 
 #include <fundamental/inline.srx>
 
-#undef MAIN_REGEX_CLASS
-#define MAIN_REGEX_CLASS Test
-
 regex Test {
 	contains: group(ABC);
 }
