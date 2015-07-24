@@ -7,7 +7,7 @@
 #define word(rgx) \brgx\b
 
 regex boundary {
-	contains: \b
+	contains: \b;
 }
 
 #endif
